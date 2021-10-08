@@ -7,7 +7,7 @@ function getYear() {
 getYear();
 
 
-isotope js
+//isotope js
 $(window).on('load', function () {
     $('.filters_menu li').click(function () {
         $('.filters_menu li').removeClass('active');
@@ -66,4 +66,18 @@ $(".client_owl-carousel").owlCarousel({
             items: 2
         }
     }
+});
+
+//search pop up
+$(document).ready(function() {
+  $('.button').click(function() {
+    $('.overlay').css("display", "block");
+    $('.button').css("display", "none");
+  });
+
+  $('#submitSearch').click(function() {
+    $('.overlay').css("display", "none");
+    $('.button').css("display", "block");
+  });
+
 });

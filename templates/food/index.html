@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static%}
 {% block body %}
+{% load get_category %}
 <body>
 
   <div class="hero_area">
@@ -27,7 +28,7 @@
                 <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% static 'food/menu.html'%}">Menu</a>
+                <a class="nav-link" href="{% url 'fastfood:menu'%}">Menu</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.html">About</a>
@@ -94,9 +95,9 @@
                   </g>
                 </svg>
               </a>
-              <form class="form-inline">
-
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+              <form class="form-inline" action="{% url 'fastfood:menu' %}" method="get">
+{#                  <input type="search" name="search">#}
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
               </form>
@@ -353,17 +354,19 @@
 
       <ul class="filters_menu">
         <li class="active" data-filter="*">All</li>
-        <li data-filter=".burger">Burger</li>
-        <li data-filter=".pizza">Pizza</li>
-        <li data-filter=".pasta">Pasta</li>
-        <li data-filter=".fries">Fries</li>
+        <li data-filter=".Burger">Burger</li>
+        <li data-filter=".Pizza">Pizza</li>
+        <li data-filter=".Pasta">Pasta</li>
+        <li data-filter=".Fries">Fries</li>
       </ul>
 
 
       <div class="filters-content">
         <div class="row grid">
           {% for food in foods %}
-          <div class="col-sm-6 col-lg-4 all {{ food.caption }} ">
+
+          <div class="col-sm-6 col-lg-4 all {% get_category food %}">
+
             <div class="box">
               <div>
                 <div class="img-box">
